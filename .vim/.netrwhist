@@ -1,4 +1,1 @@
-let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =2
-let g:netrw_dirhist_1='/Users/snow/.emacs.d/auto-save-list'
-let g:netrw_dirhist_2='/Users/snow/.rbenv'
+let g:netrw_dirhistmax  =10let g:netrw_dirhist_cnt =3let g:netrw_dirhist_1='/Users/snow/.emacs.d/auto-save-list'let g:netrw_dirhist_2='/Users/snow/.rbenv'let g:netrw_dirhist_3='/Users/snow/Dropbox/profiles/.vim'

@@ -1,0 +1,5 @@
+lightline.vim
+neobundle.vim
+neocomplcache
+vim-coffee-script
+vimproc

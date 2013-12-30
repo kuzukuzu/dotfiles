@@ -2,17 +2,20 @@
 # setting environmental variables
 #
 export LANG=ja_JP.UTF-8
+export PATH="/usr/local/bin:$PATH"
 
 #
-# setting complement
+# setting completion
 #
 autoload -U compinit
 compinit
-# pack complement list
+# pack completion list
 setopt list_packed
 # auto sugestion
-autoload predict-on
-predict-on
+# autoload predict-on
+# predict-on
+# don't remove postfix slash
+setopt noautoremoveslash
 
 #
 # setting PROMPTs
@@ -20,13 +23,17 @@ predict-on
 case ${UID} in
 0)
   PROMPT="%B%{[31m%}%n%%%{[m%}%b "
-  PROMPT2="%B%{[31m%}%_%%%{[m%}%b "
-  RPROMPT="%B%{[31m%}[%32<...<%~]%%%{[m%}%b"
+  PROMPT2="%B%{[31m%}%_>%{[m%}%b "
+  RPROMPT="%B%{[31m%}[%32<...<%~]%{[m%}%b"
+  [ -n "${REMOTEHOST}${SSH_CONNECTION}" ] &&
+    PROMPT="%B%{HOST%%.*}%b ${PROMPT}"
   ;;
 *)
   PROMPT="%B%{[34m%}%n%%%{[m%}%b "
-  PROMPT2="%B%{[34m%}%_%%%{[m%}%b "
-  RPROMPT="%B%{[34m%}[%32<...<%~]%%%{[m%}%b"
+  PROMPT2="%B%{[34m%}%_>%{[m%}%b "
+  RPROMPT="%B%{[34m%}[%32<...<%~]%{[m%}%b"
+  [ -n "${REMOTEHOST}${SSH_CONNECTION}" ] &&
+    PROMPT="%B%{HOST%%.*}%b ${PROMPT}"
   ;;
 esac
 
@@ -76,3 +83,72 @@ setopt correct
 # invalidate beep sound
 setopt nolistbeep
 
+#
+# setting lscolors
+#
+# export LSCOLORS=exfxcxdxbxegedabagacad
+export LSCOLORS=ExFxCxdxBxegedabagacad
+case ${OSTYPE} in
+freebsd*|darwin*)
+  alias ls="ls -G -w"
+  ;;
+linux*)
+  alias ls="ls --color"
+  ;;
+esac
+# completion colors
+# zstyle ':completion:*' list-colors 'di=34' 'ln=35' 'so=32' 'ex=31' 'bd=46;34' 'cd=43;34'
+zstyle ':completion:*' list-colors 'di=;34;1' 'ln=;35;1' 'so=;32;1' 'ex=31;1' 'bd=46;34' 'cd=43;34'
+
+# using when writing each environment's settings
+# [ -f ~/.zshrc.mine ] && source ~/.zshrc.mine
+
+#
+# settin aliases
+#
+setopt complete_aliases
+
+alias where="command -v"
+alias j="jobs -l"
+
+alias la="ls -a"
+alias lf="ls -F"
+alias ll="ls -l"
+
+alias du="du -h"
+alias df="df -h"
+
+alias su="su -l"
+
+alias cdb="cd .."
+
+# tmux
+alias tm='tmux'
+alias tma='tmux attach'
+alias tml='tmux list-window'
+
+
+#
+# quick executers
+#
+alias -s c=zsh_c_executer
+alias -s rb=ruby
+
+zsh_c_executer()
+{
+  gcc ${@+"$@"}
+  ./a.out
+}
+
+# 
+# show git branch
+# 
+autoload -Uz vcs_info
+zstyle ':vcs_info;*' formats '[%b]'
+zstyle ':vcs_info;*' actionformats '[%b|%a]'
+precmd () {
+  psvar=()
+  LANG=en_US.UTF-8 vcs_info
+  [[ -n "$vcs_info_msg_0_" ]] && psvar[1]="$vcs_info_msg_0_"
+}
+RPROMPT="%1(v|%F{green}%1v%f|)"$RPROMPT

@@ -93,8 +93,12 @@ set whichwrap=b,s,h,l,<,>,[,]
 
 " key map
 " {{{
+nnoremap <C-j> ddp
+nnoremap <C-h> yypk
+nnoremap <C-k> kddpk
 nnoremap <C-c><C-c> :<C-u>nohlsearch<cr><Esc>
-inoremap <C-j> <ESC>
+nnoremap <C-l><C-l> :%s/\s\+$//g<CR>
+nnoremap <C-g><C-g> :%s/　/ /g<CR>
 
 inoremap {<CR> {}<LEFT><CR><Esc>O
 inoremap /**/ /*  */<LEFT><LEFT><LEFT>
@@ -133,8 +137,8 @@ endfunction
 " <TAB>: completion.
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 " <C-h>, <BS>: close popup and delete backword char.
-inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
 inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
+inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
 inoremap <expr><C-y>  neocomplcache#close_popup()
 inoremap <expr><C-e>  neocomplcache#cancel_popup()
 " }}}

@@ -2,7 +2,8 @@
 # setting environmental variables
 #
 export LANG=ja_JP.UTF-8
-export PATH="/usr/local/bin:$PATH"
+export PATH="~/.rbenv/shims:/usr/local/bin:$PATH"
+eval "$(rbenv init -)"
 
 #
 # setting completion
@@ -30,6 +31,7 @@ case ${UID} in
   ;;
 *)
   PROMPT="%B%{[34m%}%n%%%{[m%}%b "
+  PROMPT="%B%{[34m%}_(┐「ε:)_%{[m%}%b "
   PROMPT2="%B%{[34m%}%_>%{[m%}%b "
   RPROMPT="%B%{[34m%}[%32<...<%~]%{[m%}%b"
   [ -n "${REMOTEHOST}${SSH_CONNECTION}" ] &&
@@ -140,9 +142,9 @@ zsh_c_executer()
   ./a.out
 }
 
-# 
+#
 # show git branch
-# 
+#
 autoload -Uz vcs_info
 zstyle ':vcs_info;*' formats '[%b]'
 zstyle ':vcs_info;*' actionformats '[%b|%a]'

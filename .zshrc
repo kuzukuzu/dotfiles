@@ -2,8 +2,8 @@
 # setting environmental variables
 #
 export LANG=ja_JP.UTF-8
-export PATH="~/.rbenv/shims:/usr/local/bin:$PATH"
-eval "$(rbenv init -)"
+#export PATH="~/.rbenv/shims:/usr/local/bin:$PATH"
+#eval "$(rbenv init -)"
 
 #
 # setting completion
@@ -23,19 +23,19 @@ setopt noautoremoveslash
 #
 case ${UID} in
 0)
-  PROMPT="%B%{[31m%}%n%%%{[m%}%b "
-  PROMPT2="%B%{[31m%}%_>%{[m%}%b "
+  PROMPT="%B%{[31m%}%n%%%{[m%}%b"
+  PROMPT2="%B%{[31m%}%_>%{[m%}%b"
   RPROMPT="%B%{[31m%}[%32<...<%~]%{[m%}%b"
   [ -n "${REMOTEHOST}${SSH_CONNECTION}" ] &&
-    PROMPT="%B%{HOST%%.*}%b ${PROMPT}"
+    PROMPT="${PROMPT}%B%{[37m%}@${HOST%%.*}%{[m%}%b "
   ;;
 *)
-  PROMPT="%B%{[34m%}%n%%%{[m%}%b "
-  PROMPT="%B%{[34m%}_(┐「ε:)_%{[m%}%b "
+  PROMPT="%B%{[34m%}%n%%%{[m%}%b"
+  PROMPT="%B%{[34m%}_(┐「ε:)_%{[m%}%b"
   PROMPT2="%B%{[34m%}%_>%{[m%}%b "
   RPROMPT="%B%{[34m%}[%32<...<%~]%{[m%}%b"
   [ -n "${REMOTEHOST}${SSH_CONNECTION}" ] &&
-    PROMPT="%B%{HOST%%.*}%b ${PROMPT}"
+    PROMPT="${PROMPT}%B%{[37m%}@${HOST%%.*}%{[m%}%b "
   ;;
 esac
 

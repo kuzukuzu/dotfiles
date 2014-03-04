@@ -30,12 +30,12 @@ case ${UID} in
     PROMPT="${PROMPT}%B%{[37m%}@${HOST%%.*}%{[m%}%b "
   ;;
 *)
-  PROMPT="%B%{[34m%}%n%%%{[m%}%b"
-  PROMPT="%B%{[34m%}_(┐「ε:)_%{[m%}%b"
+  PROMPT="%B%{[34m%}%n%%%{[m%}%b "
+  PROMPT="%B%{[34m%}_(┐「ε:)_%{[m%}%b "
   PROMPT2="%B%{[34m%}%_>%{[m%}%b "
   RPROMPT="%B%{[34m%}[%32<...<%~]%{[m%}%b"
   [ -n "${REMOTEHOST}${SSH_CONNECTION}" ] &&
-    PROMPT="${PROMPT}%B%{[37m%}@${HOST%%.*}%{[m%}%b "
+    PROMPT="${PROMPT}\b%B%{[37m%}@${HOST%%.*}%{[m%}%b "
   ;;
 esac
 

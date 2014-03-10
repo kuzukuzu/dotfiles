@@ -1,5 +1,6 @@
 lightline.vim
 neobundle.vim
-neocomplcache
+neocomplete
 vim-coffee-script
+vim-surround
 vimproc

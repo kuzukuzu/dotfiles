@@ -49,6 +49,8 @@ autocmd FileType coffee setlocal sw=2 sts=2 ts=2 et
 NeoBundle 'itchyny/lightline.vim'
 let g:lightline = { 'colorscheme': 'wombat' }
 
+NeoBundle 'tpope/vim-surround'
+
 " }}}
 
 " setting encodings
@@ -113,8 +115,8 @@ set softtabstop=2
 
 " setting cursor move
 " {{{
-set backspace=indent,eol,start
-set whichwrap=b,s,h,l,<,>,[,]
+" set backspace=indent,eol,start
+" set whichwrap=b,s,h,l,<,>,[,]
 " }}}
 
 " key map
@@ -132,5 +134,16 @@ inoremap /**/ /*  */<LEFT><LEFT><LEFT>
 inoremap acom<CR> /*<CR>1w120495-7 桝冨 祐樹, <C-R>=strftime("%Y.%m.%d")<CR><CR>仕様:<CR>説明:<CR>*/
 inoremap main<CR> #include<stdio.h><CR><CR>int main()<CR>{}<LEFT><CR><Esc>Oreturn 0;<ESC>0<ESC>O<ESC>O
 inoremap test<CR> if (DEBUG) printf("aa\n");
+
+" tab
+nnoremap <silent> <leader>tf :<c-u>tabfirst<cr>
+nnoremap <silent> <leader>tl :<c-u>tablast<cr>
+nnoremap <silent> <leader>tn :<c-u>tabnext<cr>
+nnoremap <silent> <leader>tN :<c-u>tabNext<cr>
+nnoremap <silent> <leader>tp :<c-u>tabprevious<cr>
+nnoremap <silent> <leader>te :<c-u>tabedit<cr>
+nnoremap <silent> <leader>tc :<c-u>tabclose<cr>
+nnoremap <silent> <leader>to :<c-u>tabonly<cr>
+nnoremap <silent> <leader>ts :<c-u>tabs<cr>
 
 " }}}

@@ -15,25 +15,25 @@ NeoBundle 'Shougo/vimproc'
 " neocomplete
 NeoBundle has('lua') ? 'Shougo/neocomplete' : 'Shougo/neocomplcache'
 if neobundle#is_installed('neocomplete')
-    " neocomplete用設定
-    let g:neocomplete#enable_at_startup = 1
-    let g:neocomplete#enable_ignore_case = 1
-    let g:neocomplete#enable_smart_case = 1
-    if !exists('g:neocomplete#keyword_patterns')
-        let g:neocomplete#keyword_patterns = {}
-    endif
-    let g:neocomplete#keyword_patterns._ = '\h\w*'
+  " neocomplete用設定
+  let g:neocomplete#enable_at_startup = 1
+  let g:neocomplete#enable_ignore_case = 1
+  let g:neocomplete#enable_smart_case = 1
+  if !exists('g:neocomplete#keyword_patterns')
+    let g:neocomplete#keyword_patterns = {}
+  endif
+  let g:neocomplete#keyword_patterns._ = '\h\w*'
 elseif neobundle#is_installed('neocomplcache')
-    " neocomplcache用設定
-    let g:neocomplcache_enable_at_startup = 1
-    let g:neocomplcache_enable_ignore_case = 1
-    let g:neocomplcache_enable_smart_case = 1
-    if !exists('g:neocomplcache_keyword_patterns')
-        let g:neocomplcache_keyword_patterns = {}
-    endif
-    let g:neocomplcache_keyword_patterns._ = '\h\w*'
-    let g:neocomplcache_enable_camel_case_completion = 1
-    let g:neocomplcache_enable_underbar_completion = 1
+  " neocomplcache用設定
+  let g:neocomplcache_enable_at_startup = 1
+  let g:neocomplcache_enable_ignore_case = 1
+  let g:neocomplcache_enable_smart_case = 1
+  if !exists('g:neocomplcache_keyword_patterns')
+    let g:neocomplcache_keyword_patterns = {}
+  endif
+  let g:neocomplcache_keyword_patterns._ = '\h\w*'
+  let g:neocomplcache_enable_camel_case_completion = 1
+  let g:neocomplcache_enable_underbar_completion = 1
 endif
 inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<S-TAB>"
@@ -50,6 +50,9 @@ NeoBundle 'itchyny/lightline.vim'
 let g:lightline = { 'colorscheme': 'wombat' }
 
 NeoBundle 'tpope/vim-surround'
+NeoBundle 'scrooloose/nerdtree'
+NeoBundle 'kana/vim-operator-replace'
+NeoBundle 'kana/vim-operator-user.git'
 
 " }}}
 
@@ -131,19 +134,55 @@ nnoremap <C-g><C-g> :%s/　/ /g<CR>
 inoremap {<CR> {}<LEFT><CR><Esc>O
 inoremap /**/ /*  */<LEFT><LEFT><LEFT>
 
-inoremap acom<CR> /*<CR>1w120495-7 桝冨 祐樹, <C-R>=strftime("%Y.%m.%d")<CR><CR>仕様:<CR>説明:<CR>*/
-inoremap main<CR> #include<stdio.h><CR><CR>int main()<CR>{}<LEFT><CR><Esc>Oreturn 0;<ESC>0<ESC>O<ESC>O
-inoremap test<CR> if (DEBUG) printf("aa\n");
+nnoremap <C-e> :NERDTree<CR>
+map W <Plug>(operator-replace)
 
+"
 " tab
-nnoremap <silent> <leader>tf :<c-u>tabfirst<cr>
-nnoremap <silent> <leader>tl :<c-u>tablast<cr>
-nnoremap <silent> <leader>tn :<c-u>tabnext<cr>
-nnoremap <silent> <leader>tN :<c-u>tabNext<cr>
-nnoremap <silent> <leader>tp :<c-u>tabprevious<cr>
-nnoremap <silent> <leader>te :<c-u>tabedit<cr>
-nnoremap <silent> <leader>tc :<c-u>tabclose<cr>
-nnoremap <silent> <leader>to :<c-u>tabonly<cr>
-nnoremap <silent> <leader>ts :<c-u>tabs<cr>
+"
 
+" Anywhere SID.
+function! s:SID_PREFIX()
+  return matchstr(expand('<sfile>'), '<SNR>\d\+_\zeSID_PREFIX$')
+endfunction
+
+" Set tabline.
+function! s:my_tabline()  "{{{
+  let s = ''
+  for i in range(1, tabpagenr('$'))
+    let bufnrs = tabpagebuflist(i)
+    let bufnr = bufnrs[tabpagewinnr(i) - 1]  " first window, first appears
+    let no = i  " display 0-origin tabpagenr.
+    let mod = getbufvar(bufnr, '&modified') ? '!' : ' '
+    let title = fnamemodify(bufname(bufnr), ':t')
+    let title = '[' . title . ']'
+    let s .= '%'.i.'T'
+    let s .= '%#' . (i == tabpagenr() ? 'TabLineSel' : 'TabLine') . '#'
+    let s .= no . ':' . title
+    let s .= mod
+    let s .= '%#TabLineFill# '
+  endfor
+  let s .= '%#TabLineFill#%T%=%#TabLine#'
+  return s
+endfunction "}}}
+let &tabline = '%!'. s:SID_PREFIX() . 'my_tabline()'
+set showtabline=2 " 常にタブラインを表示
+
+" The prefix key.
+nnoremap    [Tag]   <Nop>
+nmap    t [Tag]
+" Tab jump
+for n in range(1, 9)
+  execute 'nnoremap <silent> [Tag]'.n  ':<C-u>tabnext'.n.'<CR>'
+endfor
+" t1 で1番左のタブ、t2 で1番左から2番目のタブにジャンプ
+
+map <silent> [Tag]c :tablast <bar> tabnew<CR>
+" tc 新しいタブを一番右に作る
+map <silent> [Tag]x :tabclose<CR>
+" tx タブを閉じる
+map <silent> [Tag]n :tabnext<CR>
+" tn 次のタブ
+map <silent> [Tag]p :tabprevious<CR>
+" tp 前のタブ
 " }}}

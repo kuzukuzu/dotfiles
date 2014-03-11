@@ -23,19 +23,25 @@ setopt noautoremoveslash
 #
 case ${UID} in
 0)
-  PROMPT="%B%{[31m%}%n%%%{[m%}%b "
-  PROMPT2="%B%{[31m%}%_>%{[m%}%b "
-  RPROMPT="%B%{[31m%}[%32<...<%~]%{[m%}%b"
+  # prompt_dir="%B%{[31m%}[%32<...<%~]%{[m%}%b"
+  prompt_dir="[%32<...<%~]"
+  prompt_time="%D{%T}"
+  prompt_user="%B%{[31m%}%n%{[m%}%b"
   [ -n "${REMOTEHOST}${SSH_CONNECTION}" ] &&
-    PROMPT="%B%{[31m%}%n%{[m%}%b%B%{[37m%}@${HOST%%.*}%%%{[m%}%b "
+    prompt_user="${prompt_user}%B%{[37m%}@${HOST%%.*}%{[m%}%b"
+  PROMPT=$'\n'"["$prompt_user" "$prompt_time"]"$prompt_dir$'\n''%% '
+  PROMPT2="%B%{[31m%}%_>%{[m%}%b "
   ;;
 *)
-  PROMPT="%B%{[34m%}%n%%%{[m%}%b "
+  # prompt_dir="%B%{[34m%}[%32<...<%~]%{[m%}%b"
+  prompt_dir="[%32<...<%~]"
+  prompt_time="%D{%T}"
+  prompt_user="%B%{[34m%}%n%{[m%}%b"
   # PROMPT="%B%{[34m%}_(┐「ε:)_%{[m%}%b "
-  PROMPT2="%B%{[34m%}%_>%{[m%}%b "
-  RPROMPT="%B%{[34m%}[%32<...<%~]%{[m%}%b"
   [ -n "${REMOTEHOST}${SSH_CONNECTION}" ] &&
-    PROMPT="%B%{[34m%}%n%{[m%}%b%B%{[37m%}@${HOST%%.*}%%%{[m%}%b "
+    prompt_user="${prompt_user}%B%{[37m%}@${HOST%%.*}%{[m%}%b"
+  PROMPT=$'\n'"["$prompt_user" "$prompt_time"]"$prompt_dir$'\n''%% '
+  PROMPT2="%B%{[34m%}%_>%{[m%}%b "
   ;;
 esac
 

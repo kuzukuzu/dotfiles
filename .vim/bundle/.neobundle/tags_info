@@ -1,0 +1,9 @@
+lightline.vim
+neobundle.vim
+neocomplete
+nerdtree
+vim-coffee-script
+vim-operator-replace
+vim-operator-user
+vim-surround
+vimproc

@@ -85,7 +85,8 @@ set relativenumber number
 set showmatch
 set cursorline
 set cursorcolumn
-colorscheme hybrid
+" colorscheme hybrid
+colorscheme iceberg
 syntax on
 set wrap
 " status line
@@ -135,7 +136,7 @@ inoremap {<CR> {}<LEFT><CR><Esc>O
 inoremap /**/ /*  */<LEFT><LEFT><LEFT>
 
 nnoremap <C-e> :NERDTree<CR>
-map W <Plug>(operator-replace)
+map R <Plug>(operator-replace)
 
 "
 " tab

@@ -159,6 +159,7 @@ g:neobundle#install_max_processes	neobundle.txt	/*g:neobundle#install_max_proces
 g:neobundle#install_process_timeout	neobundle.txt	/*g:neobundle#install_process_timeout*
 g:neobundle#log_filename	neobundle.txt	/*g:neobundle#log_filename*
 g:neobundle#rm_command	neobundle.txt	/*g:neobundle#rm_command*
+g:neobundle#types#git#clone_depth	neobundle.txt	/*g:neobundle#types#git#clone_depth*
 g:neobundle#types#git#command_path	neobundle.txt	/*g:neobundle#types#git#command_path*
 g:neobundle#types#git#default_protocol	neobundle.txt	/*g:neobundle#types#git#default_protocol*
 g:neobundle#types#git#enable_submodule	neobundle.txt	/*g:neobundle#types#git#enable_submodule*
@@ -338,6 +339,7 @@ neobundle-options-site	neobundle.txt	/*neobundle-options-site*
 neobundle-options-stay_same	neobundle.txt	/*neobundle-options-stay_same*
 neobundle-options-terminal	neobundle.txt	/*neobundle-options-terminal*
 neobundle-options-type	neobundle.txt	/*neobundle-options-type*
+neobundle-options-type__depth	neobundle.txt	/*neobundle-options-type__depth*
 neobundle-options-type__filename	neobundle.txt	/*neobundle-options-type__filename*
 neobundle-options-type__protocol	neobundle.txt	/*neobundle-options-type__protocol*
 neobundle-options-verbose	neobundle.txt	/*neobundle-options-verbose*
@@ -481,6 +483,7 @@ operator-user-changelog-0.0.5	operator-user.txt	/*operator-user-changelog-0.0.5*
 operator-user-changelog-0.0.6	operator-user.txt	/*operator-user-changelog-0.0.6*
 operator-user-changelog-0.0.7	operator-user.txt	/*operator-user-changelog-0.0.7*
 operator-user-changelog-0.0.8	operator-user.txt	/*operator-user-changelog-0.0.8*
+operator-user-changelog-0.0.9	operator-user.txt	/*operator-user-changelog-0.0.9*
 operator-user-contents	operator-user.txt	/*operator-user-contents*
 operator-user-examples	operator-user.txt	/*operator-user-examples*
 operator-user-examples-A	operator-user.txt	/*operator-user-examples-A*

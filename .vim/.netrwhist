@@ -1,5 +1,5 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =8
+let g:netrw_dirhist_cnt =9
 let g:netrw_dirhist_1='/Users/snow'
 let g:netrw_dirhist_2='/Users/snow/Documents/programming/web/nagase/groupware/app/Model'
 let g:netrw_dirhist_3='/Users/snow/Documents/programming/web/ruby/rails/blog/app/controllers'
@@ -8,3 +8,4 @@ let g:netrw_dirhist_5='/Users/snow/Documents/programming/web/ruby/rails/blog/app
 let g:netrw_dirhist_6='/Users/snow/Documents/programming/web/ruby/rails/blog/app/views/layouts'
 let g:netrw_dirhist_7='/Users/snow/Documents/programming/web/ruby/rails/blog/app/views'
 let g:netrw_dirhist_8='/Users/snow/Documents/programming/web/ruby/rails/blog/app/views/posts'
+let g:netrw_dirhist_9='/home/kuzukuzu/dotfiles'

@@ -4,7 +4,7 @@ set clipboard=unnamed,autoselect
 " neobundle
 " {{{
 if has('vim_starting')
-  set runtimepath+=~/.vim/bundle/neobundle.vim/
+    set runtimepath+=~/.vim/bundle/neobundle.vim/
 endif
 call neobundle#rc(expand('~/.vim/bundle/'))
 filetype plugin indent on
@@ -15,25 +15,25 @@ NeoBundle 'Shougo/vimproc'
 " neocomplete
 NeoBundle has('lua') ? 'Shougo/neocomplete' : 'Shougo/neocomplcache'
 if neobundle#is_installed('neocomplete')
-  " neocomplete用設定
-  let g:neocomplete#enable_at_startup = 1
-  let g:neocomplete#enable_ignore_case = 1
-  let g:neocomplete#enable_smart_case = 1
-  if !exists('g:neocomplete#keyword_patterns')
-    let g:neocomplete#keyword_patterns = {}
-  endif
-  let g:neocomplete#keyword_patterns._ = '\h\w*'
+    " neocomplete用設定
+    let g:neocomplete#enable_at_startup = 1
+    let g:neocomplete#enable_ignore_case = 1
+    let g:neocomplete#enable_smart_case = 1
+    if !exists('g:neocomplete#keyword_patterns')
+        let g:neocomplete#keyword_patterns = {}
+    endif
+    let g:neocomplete#keyword_patterns._ = '\h\w*'
 elseif neobundle#is_installed('neocomplcache')
-  " neocomplcache用設定
-  let g:neocomplcache_enable_at_startup = 1
-  let g:neocomplcache_enable_ignore_case = 1
-  let g:neocomplcache_enable_smart_case = 1
-  if !exists('g:neocomplcache_keyword_patterns')
-    let g:neocomplcache_keyword_patterns = {}
-  endif
-  let g:neocomplcache_keyword_patterns._ = '\h\w*'
-  let g:neocomplcache_enable_camel_case_completion = 1
-  let g:neocomplcache_enable_underbar_completion = 1
+    " neocomplcache用設定
+    let g:neocomplcache_enable_at_startup = 1
+    let g:neocomplcache_enable_ignore_case = 1
+    let g:neocomplcache_enable_smart_case = 1
+    if !exists('g:neocomplcache_keyword_patterns')
+        let g:neocomplcache_keyword_patterns = {}
+    endif
+    let g:neocomplcache_keyword_patterns._ = '\h\w*'
+    let g:neocomplcache_enable_camel_case_completion = 1
+    let g:neocomplcache_enable_underbar_completion = 1
 endif
 inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<S-TAB>"
@@ -144,27 +144,27 @@ map R <Plug>(operator-replace)
 
 " Anywhere SID.
 function! s:SID_PREFIX()
-  return matchstr(expand('<sfile>'), '<SNR>\d\+_\zeSID_PREFIX$')
+    return matchstr(expand('<sfile>'), '<SNR>\d\+_\zeSID_PREFIX$')
 endfunction
 
 " Set tabline.
 function! s:my_tabline()  "{{{
-  let s = ''
-  for i in range(1, tabpagenr('$'))
-    let bufnrs = tabpagebuflist(i)
-    let bufnr = bufnrs[tabpagewinnr(i) - 1]  " first window, first appears
-    let no = i  " display 0-origin tabpagenr.
-    let mod = getbufvar(bufnr, '&modified') ? '!' : ' '
-    let title = fnamemodify(bufname(bufnr), ':t')
-    let title = '[' . title . ']'
-    let s .= '%'.i.'T'
-    let s .= '%#' . (i == tabpagenr() ? 'TabLineSel' : 'TabLine') . '#'
-    let s .= no . ':' . title
-    let s .= mod
-    let s .= '%#TabLineFill# '
-  endfor
-  let s .= '%#TabLineFill#%T%=%#TabLine#'
-  return s
+    let s = ''
+    for i in range(1, tabpagenr('$'))
+        let bufnrs = tabpagebuflist(i)
+        let bufnr = bufnrs[tabpagewinnr(i) - 1]  " first window, first appears
+        let no = i  " display 0-origin tabpagenr.
+        let mod = getbufvar(bufnr, '&modified') ? '!' : ' '
+        let title = fnamemodify(bufname(bufnr), ':t')
+        let title = '[' . title . ']'
+        let s .= '%'.i.'T'
+        let s .= '%#' . (i == tabpagenr() ? 'TabLineSel' : 'TabLine') . '#'
+        let s .= no . ':' . title
+        let s .= mod
+        let s .= '%#TabLineFill# '
+    endfor
+    let s .= '%#TabLineFill#%T%=%#TabLine#'
+    return s
 endfunction "}}}
 let &tabline = '%!'. s:SID_PREFIX() . 'my_tabline()'
 set showtabline=2 " 常にタブラインを表示
@@ -174,7 +174,7 @@ nnoremap    [Tag]   <Nop>
 nmap    t [Tag]
 " Tab jump
 for n in range(1, 9)
-  execute 'nnoremap <silent> [Tag]'.n  ':<C-u>tabnext'.n.'<CR>'
+    execute 'nnoremap <silent> [Tag]'.n  ':<C-u>tabnext'.n.'<CR>'
 endfor
 " t1 で1番左のタブ、t2 で1番左から2番目のタブにジャンプ
 

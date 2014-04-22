@@ -42,7 +42,7 @@ inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<S-TAB>"
 NeoBundle 'kchmck/vim-coffee-script'
 au BufRead,BufNewFile,BufReadPre *.coffee set filetype=coffee
 autocmd FileType coffee setlocal sw=2 sts=2 ts=2 et
-" au BufWritePost *.coffee silent CoffeeMake! -b | cwindow | redraw!
+au BufWritePost *.coffee :silent !coffee -cb %
 " nnoremap <silent> <C-C> :CoffeeCompile vert <CR><C-w>h
 
 " lightline.vim
@@ -53,6 +53,7 @@ NeoBundle 'tpope/vim-surround'
 NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'kana/vim-operator-replace'
 NeoBundle 'kana/vim-operator-user.git'
+NeoBundle 'mattn/emmet-vim'
 
 " }}}
 
@@ -85,8 +86,7 @@ set relativenumber number
 set showmatch
 set cursorline
 set cursorcolumn
-" colorscheme hybrid
-colorscheme iceberg
+colorscheme hybrid
 syntax on
 set wrap
 " status line
@@ -187,3 +187,6 @@ map <silent> [Tag]n :tabnext<CR>
 map <silent> [Tag]p :tabprevious<CR>
 " tp 前のタブ
 " }}}
+
+" kkhshine
+autocmd BufNewFile,BufRead *.wl set filetype=c

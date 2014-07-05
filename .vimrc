@@ -109,7 +109,7 @@ autocmd BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} set filetype=markdown
 
 " setting tabs
 " {{{
-set expandtab
+" set expandtab
 set autoindent
 set smartindent
 set tabstop=2

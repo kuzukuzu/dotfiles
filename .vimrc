@@ -54,6 +54,14 @@ NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'kana/vim-operator-replace'
 NeoBundle 'kana/vim-operator-user.git'
 NeoBundle 'mattn/emmet-vim'
+NeoBundle 'bkad/CamelCaseMotion'
+
+map <silent> w <Plug>CamelCaseMotion_w
+map <silent> b <Plug>CamelCaseMotion_b
+map <silent> e <Plug>CamelCaseMotion_e
+sunmap w
+sunmap b
+sunmap e
 
 " }}}
 

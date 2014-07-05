@@ -22,6 +22,9 @@
 'NERDTreeWinPos'	NERD_tree.txt	/*'NERDTreeWinPos'*
 'NERDTreeWinSize'	NERD_tree.txt	/*'NERDTreeWinSize'*
 'loaded_nerd_tree'	NERD_tree.txt	/*'loaded_nerd_tree'*
+,b	camelcasemotion.txt	/*,b*
+,e	camelcasemotion.txt	/*,e*
+,w	camelcasemotion.txt	/*,w*
 :NERDTree	NERD_tree.txt	/*:NERDTree*
 :NERDTreeCWD	NERD_tree.txt	/*:NERDTreeCWD*
 :NERDTreeClose	NERD_tree.txt	/*:NERDTreeClose*
@@ -143,6 +146,16 @@ NERDTreeOptions	NERD_tree.txt	/*NERDTreeOptions*
 NERDTreeRender()	NERD_tree.txt	/*NERDTreeRender()*
 NERD_tree.txt	NERD_tree.txt	/*NERD_tree.txt*
 b:neocomplete_sources	neocomplete.txt	/*b:neocomplete_sources*
+camelcasemotion-configuration	camelcasemotion.txt	/*camelcasemotion-configuration*
+camelcasemotion-dependencies	camelcasemotion.txt	/*camelcasemotion-dependencies*
+camelcasemotion-description	camelcasemotion.txt	/*camelcasemotion-description*
+camelcasemotion-history	camelcasemotion.txt	/*camelcasemotion-history*
+camelcasemotion-installation	camelcasemotion.txt	/*camelcasemotion-installation*
+camelcasemotion-known-problems	camelcasemotion.txt	/*camelcasemotion-known-problems*
+camelcasemotion-todo	camelcasemotion.txt	/*camelcasemotion-todo*
+camelcasemotion-usage	camelcasemotion.txt	/*camelcasemotion-usage*
+camelcasemotion.txt	camelcasemotion.txt	/*camelcasemotion.txt*
+camelcasemotion.vim	camelcasemotion.txt	/*camelcasemotion.vim*
 cs	surround.txt	/*cs*
 ds	surround.txt	/*ds*
 emmet	emmet.txt	/*emmet*

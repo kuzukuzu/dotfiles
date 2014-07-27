@@ -1,11 +1,15 @@
 CamelCaseMotion
+caw.vim
 emmet-vim
+gitv
 lightline.vim
 neobundle.vim
 neocomplete
-nerdtree
+unite.vim
 vim-coffee-script
+vim-fugitive
 vim-operator-replace
 vim-operator-user
 vim-surround
+vimfiler
 vimproc

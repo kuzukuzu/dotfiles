@@ -1,6 +1,16 @@
 set nocompatible
 set foldmethod=marker
 set clipboard=unnamed,autoselect
+
+" release autogroup in MyAutoCmd
+augroup MyAutoCmd
+  autocmd!
+augroup END
+" make, grepなどの後にQuickFixを開く
+autocmd MyAutoCmd QuickfixCmdPost make,grep,grepadd,vimgrep copen
+" QuickFixおよびHelpでは q でバッファを閉じる
+autocmd MyAutoCmd FileType help,qf nnoremap <buffer> q <C-w>c
+
 " neobundle
 " {{{
 if has('vim_starting')
@@ -37,6 +47,7 @@ elseif neobundle#is_installed('neocomplcache')
 endif
 inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<S-TAB>"
+set infercase
 
 " coffeescript
 NeoBundle 'kchmck/vim-coffee-script'
@@ -50,7 +61,6 @@ NeoBundle 'itchyny/lightline.vim'
 let g:lightline = { 'colorscheme': 'wombat' }
 
 NeoBundle 'tpope/vim-surround'
-NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'kana/vim-operator-replace'
 NeoBundle 'kana/vim-operator-user.git'
 NeoBundle 'mattn/emmet-vim'
@@ -63,6 +73,37 @@ sunmap w
 sunmap b
 sunmap e
 
+NeoBundle "tyru/caw.vim.git"
+nmap <C-c> <Plug>(caw:i:toggle)
+vmap <C-c> <Plug>(caw:i:toggle)
+
+NeoBundle "Shougo/unite.vim"
+NeoBundle "Shougo/vimfiler"
+nnoremap <C-e> :VimFilerExplorer<CR>
+" close vimfiler automatically when there are only vimfiler open
+autocmd MyAutoCmd BufEnter * if (winnr('$') == 1 && &filetype ==# 'vimfiler') | q | endif
+let s:hooks = neobundle#get_hooks("vimfiler")
+function! s:hooks.on_source(bundle)
+  let g:vimfiler_as_default_explorer = 1
+  let g:vimfiler_enable_auto_cd = 1
+  
+  " .から始まるファイルおよび.pycで終わるファイルを不可視パターンに
+  " 2013-08-14 追記
+  let g:vimfiler_ignore_pattern = "\%(^\..*\|\.pyc$\)"
+
+  " vimfiler specific key mappings
+  autocmd MyAutoCmd FileType vimfiler call s:vimfiler_settings()
+  function! s:vimfiler_settings()
+    " ^^ to go up
+    nmap <buffer> ^^ <Plug>(vimfiler_switch_to_parent_directory)
+    " use R to refresh
+    nmap <buffer> R <Plug>(vimfiler_redraw_screen)
+    " overwrite C-l
+    nmap <buffer> <C-l> <C-w>l
+  endfunction
+endfunction
+NeoBundle "tpope/vim-fugitive"
+NeoBundle "gregsexton/gitv"
 " }}}
 
 " setting encodings
@@ -74,8 +115,11 @@ set fileformats=unix,mac,dos
 
 " setting backups
 " {{{
-" set backup
-" set backupdir=~/backup
+set nowritebackup
+set nobackup
+set noswapfile
+set hidden
+set switchbuf=useopen
 " }}}
 
 " setting search histories
@@ -92,21 +136,22 @@ set incsearch
 " autocmd ColorScheme * highlight LineNr ctermfg=23 guifg=#880000
 set relativenumber number
 set showmatch
+set matchtime=3
+set matchpairs& matchpairs+=<:>
+set list
 set cursorline
 set cursorcolumn
 colorscheme hybrid
+" colorscheme molokai
 syntax on
 set wrap
+set textwidth=0
+set colorcolumn=80
+set t_vb=
+set novisualbell
+set listchars=tab:»-,trail:-,extends:»,precedes:«,nbsp:%,eol:↲
 " status line
 set laststatus=2
-" 行末の空白文字を可視化
-highlight WhitespaceEOL cterm=underline ctermbg=red guibg=#FF0000
-au BufWinEnter * let w:m3 = matchadd("WhitespaceEOL", '\s\+$')
-au WinEnter * let w:m3 = matchadd("WhitespaceEOL", '\s\+$')
-" 行頭のTAB文字を可視化
-highlight TabString cterm=underline ctermfg=darkgrey gui=underline guifg=#AAAAAA
-au BufWinEnter * let w:m2 = matchadd("TabString", '^\ \+')
-au WinEnter * let w:m2 = matchadd("TabString", '^\ \+')
 " 全角スペースの表示
 highlight ZenkakuSpace cterm=underline ctermbg=red guibg=#666666
 au BufWinEnter * let w:m3 = matchadd("ZenkakuSpace", '　')
@@ -117,7 +162,8 @@ autocmd BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} set filetype=markdown
 
 " setting tabs
 " {{{
-" set expandtab
+set expandtab
+set shiftround
 set autoindent
 set smartindent
 set tabstop=2
@@ -136,16 +182,33 @@ set softtabstop=2
 nnoremap <C-j> ddp
 nnoremap <C-h> yypk
 nnoremap <C-k> kddpk
-nnoremap <C-c><C-c> :<C-u>nohlsearch<cr><Esc>
+nmap <silent> <Esc><Esc> :nohlsearch<CR>
 nnoremap <C-l><C-l> :%s/\s\+$//g<CR>
 nnoremap <C-g><C-g> :%s/　/ /g<CR>
 
 inoremap {<CR> {}<LEFT><CR><Esc>O
 inoremap /**/ /*  */<LEFT><LEFT><LEFT>
 
-nnoremap <C-e> :NERDTree<CR>
 map R <Plug>(operator-replace)
 
+inoremap jj <Esc>
+
+" 検索したら結果を真ん中に
+nnoremap n nzz
+nnoremap N Nzz
+nnoremap * *zz
+nnoremap # #zz
+nnoremap g* g*zz
+nnoremap g# g#zz
+
+nnoremap j gj
+nnoremap k gk
+
+vnoremap v $h
+
+" Tabで対応する括弧に移動
+nnoremap <Tab> %
+vnoremap <Tab> %
 "
 " tab
 "

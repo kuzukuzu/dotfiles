@@ -102,8 +102,20 @@ function! s:hooks.on_source(bundle)
     nmap <buffer> <C-l> <C-w>l
   endfunction
 endfunction
+
 NeoBundle "tpope/vim-fugitive"
 NeoBundle "gregsexton/gitv"
+NeoBundle "thinca/vim-quickrun"
+nmap <Leader>r <Plug>(quickrun)
+
+NeoBundle "vim-scripts/TaskList.vim"
+nmap <Leader>T <plug>TaskList
+
+NeoBundle "scrooloose/syntastic", {
+      \ "build": {
+      \   "mac": ["pip install flake8", "npm -g install coffeelint"],
+      \   "unix": ["pip install flake8", "npm -g install coffeelint"],
+      \ }}
 " }}}
 
 " setting encodings

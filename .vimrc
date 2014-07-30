@@ -116,6 +116,9 @@ NeoBundle "scrooloose/syntastic", {
       \   "mac": ["pip install flake8", "npm -g install coffeelint"],
       \   "unix": ["pip install flake8", "npm -g install coffeelint"],
       \ }}
+
+NeoBundle "tpope/vim-rails"
+NeoBundle "vim-scripts/dbext.vim"
 " }}}
 
 " setting encodings
@@ -203,7 +206,7 @@ inoremap /**/ /*  */<LEFT><LEFT><LEFT>
 
 map R <Plug>(operator-replace)
 
-inoremap jj <Esc>
+inoremap jk <Esc>
 
 " 検索したら結果を真ん中に
 nnoremap n nzz

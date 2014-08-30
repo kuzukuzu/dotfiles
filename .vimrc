@@ -106,6 +106,8 @@ endfunction
 NeoBundle "tpope/vim-fugitive"
 NeoBundle "gregsexton/gitv"
 NeoBundle "thinca/vim-quickrun"
+let g:quickrun_config = {
+      \  "_" : { "outputter/buffer/into" : 1,},}
 nmap <Leader>r <Plug>(quickrun)
 
 NeoBundle "vim-scripts/TaskList.vim"

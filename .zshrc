@@ -138,9 +138,6 @@ alias tma='tmux attach'
 alias tml='tmux list-window'
 alias memo="vim $HOME/.worktrace"
 
-# wi-fi setup
-alias homewifi='sudo networksetup -setairportnetwork en0 7EB52B7B2443A8E929DA2593790B48DB 67caa6bb6a'
-
 #
 # quick executers
 #

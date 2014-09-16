@@ -121,6 +121,7 @@ NeoBundle "scrooloose/syntastic", {
 
 NeoBundle "tpope/vim-rails"
 NeoBundle "vim-scripts/dbext.vim"
+NeoBundle "slim-template/vim-slim"
 " }}}
 
 " setting encodings

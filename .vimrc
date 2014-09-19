@@ -122,6 +122,9 @@ NeoBundle "scrooloose/syntastic", {
 NeoBundle "tpope/vim-rails"
 NeoBundle "vim-scripts/dbext.vim"
 NeoBundle "slim-template/vim-slim"
+" Enable slim syntax highlight
+autocmd FileType slim setlocal foldmethod=indent
+autocmd BufNewFile,BufRead *.slim set filetype=slim
 " }}}
 
 " setting encodings

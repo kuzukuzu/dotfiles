@@ -32,6 +32,7 @@ case ${UID} in
   [ -n "${REMOTEHOST}${SSH_CONNECTION}" ] &&
     prompt_user="${prompt_user}%B%{[37m%}@${HOST%%.*}%{[m%}%b"
   PROMPT=$'\n'"["$prompt_user" "$prompt_time"]"$prompt_dir$'\n''%% '
+  RPROMPT=
   PROMPT2="%B%{[31m%}%_>%{[m%}%b "
   ;;
 *)
@@ -43,6 +44,7 @@ case ${UID} in
   [ -n "${REMOTEHOST}${SSH_CONNECTION}" ] &&
     prompt_user="${prompt_user}%B%{[37m%}@${HOST%%.*}%{[m%}%b"
   PROMPT=$'\n'"["$prompt_user" "$prompt_time"]"$prompt_dir$'\n''%% '
+  RPROMPT=
   PROMPT2="%B%{[34m%}%_>%{[m%}%b "
   ;;
 esac

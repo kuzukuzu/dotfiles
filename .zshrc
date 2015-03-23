@@ -2,10 +2,18 @@
 # setting environmental variables
 #
 export LANG=ja_JP.UTF-8
-export PATH="~/.rbenv/shims:/usr/local/bin:$PATH"
-eval "$(rbenv init -)"
+export PATH="$HOME/.rbenv/shims:$HOME/.rbenv/bin:/usr/local/bin:$PATH"
 export PYTHONSTARTUP=~/.pythonstartup
 export PATH="/Applications/gnuplot.app:/Applications/gnuplot.app/bin:$PATH"
+export PATH=$PATH:/usr/local/go/bin
+
+#
+# initializations
+#
+if ! type "rbenv" > /dev/null; then
+  eval "$(rbenv init -)"
+fi
+
 
 #
 # setting completion
@@ -139,6 +147,7 @@ alias tm='tmux'
 alias tma='tmux attach'
 alias tml='tmux list-window'
 alias memo="vim $HOME/.worktrace"
+alias nave=$HOME/.nave/nave.sh
 
 #
 # quick executers
@@ -164,3 +173,5 @@ precmd () {
   [[ -n "$vcs_info_msg_0_" ]] && psvar[1]="$vcs_info_msg_0_"
 }
 RPROMPT="%1(v|%F{green}%1v%f|)"$RPROMPT
+
+[ -d ~/.zsh ] && source ~/.zsh/*

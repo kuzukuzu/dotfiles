@@ -2,7 +2,7 @@
 # setting environmental variables
 #
 export LANG=ja_JP.UTF-8
-export PATH="~/.rbenv/shims:/usr/local/bin:$PATH"
+export PATH="$HOME/carchs/carch/bin/:$HOME/.rbenv/shims:/usr/local/bin:$PATH"
 eval "$(rbenv init -)"
 export PYTHONSTARTUP=~/.pythonstartup
 export PATH="/Applications/gnuplot.app:/Applications/gnuplot.app/bin:$PATH"
@@ -137,6 +137,8 @@ alias tm='tmux'
 alias tma='tmux attach'
 alias tml='tmux list-window'
 alias memo="vim $HOME/.worktrace"
+
+alias SimMips="$HOME/carchs/work/SimMips-0.5.5/SimMips"
 
 #
 # quick executers

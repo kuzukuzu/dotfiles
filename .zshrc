@@ -2,10 +2,18 @@
 # setting environmental variables
 #
 export LANG=ja_JP.UTF-8
-export PATH="$HOME/carchs/carch/bin/:$HOME/.rbenv/shims:/usr/local/bin:$PATH"
-eval "$(rbenv init -)"
+export PATH="$HOME/carchs/carch/bin/:$HOME/.rbenv/shims:$HOME/.rbenv/bin:/usr/local/bin:$PATH"
 export PYTHONSTARTUP=~/.pythonstartup
 export PATH="/Applications/gnuplot.app:/Applications/gnuplot.app/bin:$PATH"
+export PATH=$PATH:/usr/local/go/bin
+
+#
+# initializations
+#
+if ! type "rbenv" > /dev/null; then
+  eval "$(rbenv init -)"
+fi
+
 
 #
 # setting completion
@@ -32,6 +40,7 @@ case ${UID} in
   [ -n "${REMOTEHOST}${SSH_CONNECTION}" ] &&
     prompt_user="${prompt_user}%B%{[37m%}@${HOST%%.*}%{[m%}%b"
   PROMPT=$'\n'"["$prompt_user" "$prompt_time"]"$prompt_dir$'\n''%% '
+  RPROMPT=
   PROMPT2="%B%{[31m%}%_>%{[m%}%b "
   ;;
 *)
@@ -43,6 +52,7 @@ case ${UID} in
   [ -n "${REMOTEHOST}${SSH_CONNECTION}" ] &&
     prompt_user="${prompt_user}%B%{[37m%}@${HOST%%.*}%{[m%}%b"
   PROMPT=$'\n'"["$prompt_user" "$prompt_time"]"$prompt_dir$'\n''%% '
+  RPROMPT=
   PROMPT2="%B%{[34m%}%_>%{[m%}%b "
   ;;
 esac
@@ -137,6 +147,7 @@ alias tm='tmux'
 alias tma='tmux attach'
 alias tml='tmux list-window'
 alias memo="vim $HOME/.worktrace"
+alias nave=$HOME/.nave/nave.sh
 
 alias SimMips="$HOME/carchs/work/SimMips-0.5.5/SimMips"
 
@@ -164,3 +175,5 @@ precmd () {
   [[ -n "$vcs_info_msg_0_" ]] && psvar[1]="$vcs_info_msg_0_"
 }
 RPROMPT="%1(v|%F{green}%1v%f|)"$RPROMPT
+
+[ -d ~/.zsh ] && source ~/.zsh/*

@@ -20,7 +20,15 @@ call neobundle#rc(expand('~/.vim/bundle/'))
 filetype plugin indent on
 
 NeoBundleFetch 'Shougo/neobundle.vim'
-NeoBundle 'Shougo/vimproc'
+NeoBundle 'Shougo/vimproc.vim', {
+\ 'build' : {
+\     'windows' : 'tools\\update-dll-mingw',
+\     'cygwin' : 'make -f make_cygwin.mak',
+\     'mac' : 'make -f make_mac.mak',
+\     'linux' : 'make',
+\     'unix' : 'gmake',
+\    },
+\ }
 
 " neocomplete
 NeoBundle has('lua') ? 'Shougo/neocomplete' : 'Shougo/neocomplcache'
@@ -122,6 +130,10 @@ NeoBundle "scrooloose/syntastic", {
 NeoBundle "tpope/vim-rails"
 NeoBundle "vim-scripts/dbext.vim"
 NeoBundle "derekwyatt/vim-scala"
+NeoBundle "slim-template/vim-slim"
+" Enable slim syntax highlight
+autocmd FileType slim setlocal foldmethod=indent
+autocmd BufNewFile,BufRead *.slim set filetype=slim
 " }}}
 
 " setting encodings

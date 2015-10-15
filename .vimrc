@@ -64,6 +64,9 @@ autocmd FileType coffee setlocal sw=2 sts=2 ts=2 et
 au BufWritePost *.coffee :silent !coffee -cb %
 " nnoremap <silent> <C-C> :CoffeeCompile vert <CR><C-w>h
 
+" golang
+au BufRead,BufNewFile,BufReadPre *.go set filetype=go
+
 " lightline.vim
 NeoBundle 'itchyny/lightline.vim'
 let g:lightline = { 'colorscheme': 'wombat' }
@@ -73,6 +76,7 @@ NeoBundle 'kana/vim-operator-replace'
 NeoBundle 'kana/vim-operator-user.git'
 NeoBundle 'mattn/emmet-vim'
 NeoBundle 'bkad/CamelCaseMotion'
+NeoBundle 'fatih/vim-go'
 
 map <silent> w <Plug>CamelCaseMotion_w
 map <silent> b <Plug>CamelCaseMotion_b
@@ -205,6 +209,11 @@ set softtabstop=2
 " {{{
 " set backspace=indent,eol,start
 " set whichwrap=b,s,h,l,<,>,[,]
+source $VIMRUNTIME/macros/matchit.vim
+augroup matchit
+  au!
+  au FileType ruby let b:match_words = '\<\(module\|class\|def\|begin\|do\|if\|unless\|case\)\>:\<\(elsif\|when\|rescue\)\>:\<\(else\|ensure\)\>:\<end\>'
+augroup END
 " }}}
 
 " key map
@@ -287,6 +296,9 @@ map <silent> [Tag]n :tabnext<CR>
 " tn 次のタブ
 map <silent> [Tag]p :tabprevious<CR>
 " tp 前のタブ
+
+" 選択した部分を検索
+vnoremap * "zy:let @/ = @z<CR>n
 " }}}
 
 " kkhshine

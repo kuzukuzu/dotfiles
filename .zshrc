@@ -177,3 +177,5 @@ RPROMPT="%1(v|%F{green}%1v%f|)"$RPROMPT
 
 # pong the notification
 alias pong='perl -nle '\''print "display notification \"$_\" with title \"Terminal\""'\'' | osascript'
+
+source $HOME/.zshenv

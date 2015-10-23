@@ -2,10 +2,7 @@
 # setting environmental variables
 #
 export LANG=ja_JP.UTF-8
-export PATH="$HOME/carchs/carch/bin/:$HOME/.rbenv/shims:$HOME/.rbenv/bin:/usr/local/bin:$PATH"
-export PYTHONSTARTUP=~/.pythonstartup
-export PATH="/Applications/gnuplot.app:/Applications/gnuplot.app/bin:$PATH"
-export PATH=$PATH:/usr/local/go/bin
+export PATH="/usr/local/bin:$PATH"
 
 #
 # initializations
@@ -177,3 +174,6 @@ precmd () {
 RPROMPT="%1(v|%F{green}%1v%f|)"$RPROMPT
 
 [ -d ~/.zsh ] && source ~/.zsh/*
+
+# pong the notification
+alias pong='perl -nle '\''print "display notification \"$_\" with title \"Terminal\""'\'' | osascript'

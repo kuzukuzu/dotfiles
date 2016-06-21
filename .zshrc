@@ -7,7 +7,7 @@ export PATH="/usr/local/bin:$PATH"
 #
 # initializations
 #
-if ! type "rbenv" > /dev/null; then
+if type "rbenv" > /dev/null; then
   eval "$(rbenv init -)"
 fi
 
